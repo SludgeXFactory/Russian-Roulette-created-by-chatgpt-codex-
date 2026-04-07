@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russian Roulette Showdown</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="fx-layer">
+    <div class="fx-flash" id="fx-flash"></div>
+    <div class="fx-tint" id="fx-tint"></div>
+  </div>
+
+  <div class="register-overlay" id="register-overlay">
+    <div class="register-card card">
+      <p class="label">Register</p>
+      <h2>Enter Your Name</h2>
+      <p class="hero-copy register-copy">Your profile, coins, and upgrades will stick to this name on this browser.</p>
+      <input id="name-input" class="name-input" type="text" maxlength="24" placeholder="Your name">
+      <button id="save-name-btn" class="primary-btn">Continue</button>
+    </div>
+  </div>
+
+  <div class="register-overlay hidden" id="checkout-overlay">
+    <div class="register-card card">
+      <p class="label">Checkout</p>
+      <h2 id="checkout-title">Premium Purchase</h2>
+      <p class="hero-copy register-copy" id="checkout-copy">
+        Complete payment to unlock this package.
+      </p>
+      <div class="checkout-summary" id="checkout-summary"></div>
+      <input id="card-name-input" class="name-input" type="text" placeholder="Cardholder name">
+      <input id="card-number-input" class="name-input" type="text" inputmode="numeric" maxlength="19" placeholder="Card number">
+      <div class="checkout-row">
+        <input id="card-expiry-input" class="name-input" type="text" maxlength="5" placeholder="MM/YY">
+        <input id="card-cvc-input" class="name-input" type="text" inputmode="numeric" maxlength="4" placeholder="CVC">
+      </div>
+      <div class="checkout-actions">
+        <button id="cancel-checkout-btn" class="secondary-btn">Cancel</button>
+        <button id="confirm-checkout-btn" class="primary-btn">Pay Now</button>
+      </div>
+      <p class="checkout-note">Demo front-end only. Real charging still needs a payment backend.</p>
+    </div>
+  </div>
+
+  <main class="app-shell">
+    <header class="site-header card">
+      <div>
+        <p class="eyebrow">rrs.com</p>
+        <h1 class="site-logo">Russian Roulette Showdown</h1>
+      </div>
+      <nav class="site-nav">
+        <button class="site-tab active" data-page="game">Game</button>
+        <button class="site-tab" data-page="shop">Coin Shop</button>
+        <button class="site-tab" data-page="lists">Lists</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">8 Chambers. Dealer Difficulty. Coin Upgrades.</p>
+      <h1>rrs.com</h1>
+      <p class="hero-copy">
+        A full-browser Russian roulette duel site with PvP, toxic dealer battles, upgrades,
+        stacked shotgun damage, and high-risk turn mind games.
+      </p>
+      <div class="hero-actions">
+        <button class="primary-btn hero-link site-tab active" data-page="game">Play Now</button>
+        <button class="secondary-btn hero-link site-tab" data-page="lists">See Lists</button>
+      </div>
+    </section>
+
+    <section class="page-section" data-page="lists">
+      <section class="feature-strip" id="features">
+        <article class="card feature-card">
+          <p class="label">Power-Ups</p>
+          <h2>Dirty Tricks</h2>
+          <p>Unload rounds, spy chambers, stack shotgun damage, trap turns, and swing the whole table with one item.</p>
+        </article>
+        <article class="card feature-card">
+          <p class="label">Dealer AI</p>
+          <h2>5 Difficulties</h2>
+          <p>Easy to Deathwish dealer profiles with different health, pacing, aggression, and slot limits.</p>
+        </article>
+        <article class="card feature-card" id="armory">
+          <p class="label">Progression</p>
+          <h2>Systems Overview</h2>
+          <p>Coins, VIP, upgrades, security feed, and black-market actions all live on rrs.com.</p>
+        </article>
+      </section>
+
+      <section class="card powerup-guide">
+      <div class="shop-header">
+        <div>
+          <p class="label">Power-Up Guide</p>
+          <h2>Current Item List</h2>
+        </div>
+      </div>
+      <div class="powerup-grid">
+        <article class="powerup-info">
+          <strong>Sparkling Water</strong>
+          <p>Unload 1 real bullet from the remaining chambers.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Spy Glass</strong>
+          <p>Reveal whether the next chamber is real or fake.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Drug</strong>
+          <p>50% chance to heal 1 HP, 50% chance to lose 1 HP.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Shotgun Bullet</strong>
+          <p>Stacks your next real shot damage up to 20.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Cheese</strong>
+          <p>Heal 1 HP.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Mice Trap</strong>
+          <p>Blocks your opponent from doing anything on their next turn.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Phone</strong>
+          <p>Reveal whether any chamber from 1-8 is real or fake.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Back-Up Bullet</strong>
+          <p>Turns the next chamber into a real bullet if it is fake.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Handcuffs</strong>
+          <p>Your opponent cannot use power-ups on their next turn.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Adrenaline</strong>
+          <p>Steal one random power-up from your opponent.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Bulletproof Vest</strong>
+          <p>Block the next real bullet that would hit you.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Remote</strong>
+          <p>Skip the current chamber without firing.</p>
+        </article>
+        <article class="powerup-info">
+          <strong>Jammer</strong>
+          <p>Cancel your opponent&apos;s armed next-shot effect.</p>
+        </article>
+      </div>
+      </section>
+
+      <section class="card ai-settings-guide">
+        <div class="shop-header">
+          <div>
+            <p class="label">Dealer Settings</p>
+            <h2>AI Difficulty List</h2>
+          </div>
+        </div>
+        <div class="settings-grid">
+          <article class="powerup-info">
+            <strong>Easy</strong>
+            <p>HP: 5</p>
+            <p>Power-Up Slots: 5</p>
+            <p>Style: Soft Shark</p>
+          </article>
+          <article class="powerup-info">
+            <strong>Normal</strong>
+            <p>HP: 7</p>
+            <p>Power-Up Slots: 7</p>
+            <p>Style: House Dealer</p>
+          </article>
+          <article class="powerup-info">
+            <strong>Hard</strong>
+            <p>HP: 10</p>
+            <p>Power-Up Slots: 10</p>
+            <p>Style: Predator</p>
+          </article>
+          <article class="powerup-info">
+            <strong>Nightmare</strong>
+            <p>HP: 16</p>
+            <p>Power-Up Slots: 13</p>
+            <p>Style: Executioner</p>
+          </article>
+          <article class="powerup-info">
+            <strong>Deathwish</strong>
+            <p>HP: 20</p>
+            <p>Power-Up Slots: 20</p>
+            <p>Style: Apex Butcher</p>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-section" data-page="shop">
+      <section class="premium-grid">
+      <article class="card premium-card">
+        <p class="label">RRS Cash</p>
+        <h2>Premium Store</h2>
+        <p class="shop-copy">Mock checkout for website flow. No real payment processor is connected yet.</p>
+        <div class="premium-offers">
+          <button class="premium-offer" data-pack="starter">
+            <strong>$1 Starter Drop</strong>
+            <span>500 in-game money</span>
+          </button>
+          <button class="premium-offer" data-pack="stack">
+            <strong>$5 Heavy Stack</strong>
+            <span>2600 in-game money</span>
+          </button>
+          <button class="premium-offer vip-offer" data-pack="vip">
+            <strong>VIP Pass</strong>
+            <span>Observer mode, anti-cheat ban powers</span>
+          </button>
+        </div>
+      </article>
+
+      <article class="card vip-card">
+        <p class="label">VIP Network</p>
+        <h2 id="vip-status-label">VIP Offline</h2>
+        <p class="shop-copy" id="vip-copy">Buy VIP to unlock observer vision and anti-cheat controls.</p>
+        <div class="vip-actions">
+          <button id="vip-observer-btn" class="secondary-btn" disabled>Observer Vision: Off</button>
+          <button id="vip-ban-btn" class="secondary-btn" disabled>Ban Flagged Player</button>
+        </div>
+        <div class="security-feed">
+          <p class="label">Security Feed</p>
+          <div id="security-log" class="security-log"></div>
+        </div>
+      </article>
+      </section>
+
+      <section class="card black-market-card">
+      <div class="shop-header">
+        <div>
+          <p class="label">Black Market</p>
+          <h2>10 More Coin Uses</h2>
+        </div>
+      </div>
+      <div class="market-grid">
+        <div class="shop-item">
+          <div>
+            <strong>Lucky Phone</strong>
+            <p id="market-phone-copy">Guaranteed Phone at match start.</p>
+          </div>
+          <button id="buy-phone-upgrade-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Trap Wire</strong>
+            <p id="market-trap-copy">Guaranteed Mice Trap at match start.</p>
+          </div>
+          <button id="buy-trap-upgrade-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Cheese Crate</strong>
+            <p id="market-cheese-copy">Guaranteed Cheese at match start.</p>
+          </div>
+          <button id="buy-cheese-upgrade-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Water Reserve</strong>
+            <p id="market-water-copy">Guaranteed Sparkling Water at match start.</p>
+          </div>
+          <button id="buy-water-upgrade-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Bounty License</strong>
+            <p id="market-bounty-copy">Boost coin rewards from dealer wins.</p>
+          </div>
+          <button id="buy-bounty-upgrade-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Second Chance</strong>
+            <p id="market-revive-copy">Gain extra revive tokens each match.</p>
+          </div>
+          <button id="buy-revive-upgrade-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Chamber Scan</strong>
+            <p id="market-scan-copy">Reveal the next chamber instantly in-match.</p>
+          </div>
+          <button id="buy-scan-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Instant Cheese</strong>
+            <p id="market-instant-cheese-copy">Add a Cheese to your current inventory.</p>
+          </div>
+          <button id="buy-instant-cheese-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Instant Trap</strong>
+            <p id="market-instant-trap-copy">Add a Mice Trap to your current inventory.</p>
+          </div>
+          <button id="buy-instant-trap-btn" class="secondary-btn">Buy</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Inventory Reroll</strong>
+            <p id="market-reroll-copy">Reroll your full current inventory.</p>
+          </div>
+          <button id="buy-reroll-btn" class="secondary-btn">Buy</button>
+        </div>
+      </div>
+      </section>
+    </section>
+
+    <section class="page-section active" data-page="game">
+      <section class="mode-panel card" id="play">
+      <div class="mode-controls">
+        <div class="mode-buttons">
+          <button class="mode-btn active" data-mode="pvp">Player vs Player</button>
+          <button class="mode-btn" data-mode="ai">Player vs AI</button>
+        </div>
+        <label class="difficulty-picker">
+          <span>Dealer Difficulty</span>
+          <select id="difficulty-select">
+            <option value="easy">Easy</option>
+            <option value="normal" selected>Normal</option>
+            <option value="hard">Hard</option>
+            <option value="nightmare">Nightmare</option>
+            <option value="deathwish">Deathwish</option>
+          </select>
+        </label>
+      </div>
+      <div class="profile-actions">
+        <div class="user-chip">
+          <span>Player</span>
+          <strong id="current-user-label">Unregistered</strong>
+        </div>
+        <button id="change-user-btn" class="secondary-btn">Change User</button>
+        <button id="new-game-btn" class="primary-btn">Start New Match</button>
+      </div>
+      </section>
+
+      <section class="instructions-grid">
+        <article class="card feature-card">
+          <p class="label">How To Play</p>
+          <h2>Turn Flow</h2>
+          <p>Use items, aim at yourself or your opponent, confirm the shot, then let the turn auto-pass unless a fake self-shot keeps your turn alive.</p>
+        </article>
+        <article class="card feature-card">
+          <p class="label">Self Shots</p>
+          <h2>Risk For Tempo</h2>
+          <p>If you shoot yourself and the chamber is fake, you immediately keep control and may act again. If it is real, you eat the damage.</p>
+        </article>
+        <article class="card feature-card">
+          <p class="label">Dealer Rules</p>
+          <h2>Difficulty Matters</h2>
+          <p>Tougher dealers get more HP, larger power-up caps, better judgment, and bigger coin bounties when you beat them.</p>
+        </article>
+      </section>
+
+      <section class="meta-grid">
+      <article class="card meta-card">
+        <p class="label">Match State</p>
+        <div class="phase-row" id="phase-row">
+          <span class="phase-pill active" data-phase="use">Use Items</span>
+          <span class="phase-pill" data-phase="shoot">Shoot</span>
+          <span class="phase-pill" data-phase="resolve">Resolve</span>
+          <span class="phase-pill" data-phase="reload">Reload</span>
+        </div>
+        <div class="meta-stats">
+          <div>
+            <span class="label">Round</span>
+            <strong id="round-counter">0</strong>
+          </div>
+          <div>
+            <span class="label">Real Bullet Chance</span>
+            <strong id="odds-label">Unknown</strong>
+          </div>
+          <div>
+            <span class="label">Dealer Style</span>
+            <strong id="dealer-style-label">Off</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="card shop-card">
+        <div class="shop-header">
+          <div>
+            <p class="label">Coin Shop</p>
+            <h2>Armory</h2>
+          </div>
+          <div class="coin-box">
+            <span>Coins</span>
+            <strong id="coin-count">0</strong>
+          </div>
+        </div>
+        <p class="shop-copy">Win against the dealer to earn coins. Faster wins pay more.</p>
+        <div class="shop-item">
+          <div>
+            <strong>Extra Power-Up Slot</strong>
+            <p id="slot-upgrade-copy">Adds +1 to your future power-up capacity.</p>
+          </div>
+          <button id="buy-slot-btn" class="secondary-btn">Buy for 12 Coins</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Reinforced Nerves</strong>
+            <p id="hp-upgrade-copy">Adds +1 bonus HP to your future matches.</p>
+          </div>
+          <button id="buy-hp-btn" class="secondary-btn">Buy HP Upgrade</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Lucky Pocket</strong>
+            <p id="starter-upgrade-copy">Adds bonus starting power-ups every match.</p>
+          </div>
+          <button id="buy-starter-btn" class="secondary-btn">Buy Starter Boost</button>
+        </div>
+        <div class="shop-item">
+          <div>
+            <strong>Emergency Medkit</strong>
+            <p id="medkit-copy">Spend coins mid-match to recover 1 HP.</p>
+          </div>
+          <button id="buy-medkit-btn" class="secondary-btn">Heal for 15 Coins</button>
+        </div>
+        <p class="shop-copy" id="reward-preview">Beat the dealer to cash out coins.</p>
+      </article>
+      </section>
+
+      <section class="card dev-card hidden" id="dev-card">
+      <div class="shop-header">
+        <div>
+          <p class="label">Dev Mode</p>
+          <h2>YeeDev Console</h2>
+        </div>
+      </div>
+      <p class="shop-copy">Cheat tools are enabled for this profile.</p>
+      <div class="dev-actions">
+        <button id="dev-all-powerups-btn" class="secondary-btn">Give All Power-Ups</button>
+        <button id="dev-toggle-infinite-btn" class="secondary-btn">Infinite Power-Ups: Off</button>
+        <button id="dev-heal-btn" class="secondary-btn">Full Heal</button>
+        <button id="dev-reload-btn" class="secondary-btn">Force Reload</button>
+      </div>
+      <div class="dev-console">
+        <input id="dev-console-input" class="name-input" type="text" placeholder="Type command: all, infinite, heal, reload">
+        <button id="dev-console-run-btn" class="primary-btn">Run</button>
+      </div>
+      </section>
+
+      <section class="board" id="board">
+      <article class="player-card card" id="player-0-card">
+        <div class="card-top">
+          <div>
+            <p class="label">Player One</p>
+            <h2 id="player-0-name">Player 1</h2>
+          </div>
+          <div class="hp-box">
+            <span>HP</span>
+            <strong id="player-0-hp">5</strong>
+          </div>
+        </div>
+        <p class="status-line" id="player-0-status">Waiting for match start.</p>
+        <div class="inventory" id="player-0-inventory"></div>
+      </article>
+
+      <section class="center-panel card" id="center-panel">
+        <div class="turn-banner">
+          <p class="label">Current Turn</p>
+          <h2 id="turn-title">Start a new match</h2>
+          <p id="turn-subtitle">A fresh cylinder will be loaded with 8 hidden chambers.</p>
+        </div>
+
+        <div class="gun-stage" aria-hidden="true">
+          <div class="gun-indicator aim-player" id="gun-indicator">
+            <div class="gun-label gun-label-left">Player</div>
+            <div class="gun-art">
+              <span class="gun-barrel"></span>
+              <span class="gun-magazine"></span>
+              <span class="gun-pump"></span>
+              <span class="gun-receiver"></span>
+              <span class="gun-stock"></span>
+              <span class="gun-grip"></span>
+              <span class="gun-trigger"></span>
+            </div>
+            <div class="gun-label gun-label-right" id="gun-target-label">Dealer</div>
+          </div>
+        </div>
+
+        <div class="chamber-area">
+          <div class="chamber-ring" id="chamber-ring"></div>
+          <div class="next-shot">
+            <span>Upcoming Chamber</span>
+            <strong id="next-shot-label">Unknown</strong>
+          </div>
+        </div>
+
+        <div class="action-grid">
+          <button id="shoot-self-btn" class="danger-btn">Aim At Self</button>
+          <button id="shoot-opponent-btn" class="danger-btn">Aim At Opponent</button>
+          <button id="confirm-shot-btn" class="primary-btn">Confirm Shot</button>
+          <button id="cancel-shot-btn" class="secondary-btn">Cancel Aim</button>
+        </div>
+
+        <div class="log-panel">
+          <p class="label">Match Log</p>
+          <div id="log-output" class="log-output"></div>
+        </div>
+      </section>
+
+      <article class="player-card card" id="player-1-card">
+        <div class="card-top">
+          <div>
+            <p class="label">Player Two</p>
+            <h2 id="player-1-name">Player 2</h2>
+          </div>
+          <div class="hp-box">
+            <span>HP</span>
+            <strong id="player-1-hp">5</strong>
+          </div>
+        </div>
+        <p class="status-line" id="player-1-status">Waiting for match start.</p>
+        <div class="inventory" id="player-1-inventory"></div>
+      </article>
+      </section>
+    </section>
+
+    <footer class="site-footer">
+      <p>rrs.com: one chamber at a time.</p>
+    </footer>
+  </main>
+
+  <template id="powerup-button-template">
+    <button class="powerup-btn"></button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
